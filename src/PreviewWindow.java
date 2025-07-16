@@ -23,6 +23,11 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import java.io.File;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+
+
 public class PreviewWindow extends javax.swing.JFrame {
 
     /**
@@ -125,6 +130,8 @@ public class PreviewWindow extends javax.swing.JFrame {
         model.addColumn("Tanggal Terbit");
         model.addColumn("Penerbit");
         model.addColumn("Kategori");
+        model.addColumn("Usia Buku");
+        model.addColumn("Kategori Usia");
 
         try {
             int no = 1;
@@ -141,7 +148,9 @@ public class PreviewWindow extends javax.swing.JFrame {
                     rs.getString("pengarang"),
                     rs.getString("tanggal_terbit"),
                     rs.getString("penerbit"),
-                    rs.getString("kategori")
+                    rs.getString("kategori"),
+                    rs.getString("usia_buku") + " tahun",
+                    rs.getString("kategori_usia")
                 });
             }
 

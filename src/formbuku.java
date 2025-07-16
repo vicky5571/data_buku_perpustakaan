@@ -27,6 +27,11 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+
+
 public class formbuku extends javax.swing.JFrame {
 
     /**
@@ -53,6 +58,8 @@ public class formbuku extends javax.swing.JFrame {
         model.addColumn("Tanggal Terbit");
         model.addColumn("Penerbit");
         model.addColumn("Kategori");
+        model.addColumn("Usia Buku");
+        model.addColumn("Kategori Usia");
 
         try {
             int no = 1;
@@ -69,7 +76,9 @@ public class formbuku extends javax.swing.JFrame {
                     rs.getString("pengarang"),
                     rs.getString("tanggal_terbit"),
                     rs.getString("penerbit"),
-                    rs.getString("kategori")
+                    rs.getString("kategori"),
+                    rs.getString("usia_buku") + " tahun",
+                    rs.getString("kategori_usia")
                 });
             }
 
@@ -78,6 +87,7 @@ public class formbuku extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage());
         }
     }
+
     
     private void kosongkanForm() {
         txtIdBuku.setText("");
@@ -86,6 +96,8 @@ public class formbuku extends javax.swing.JFrame {
         txtTanggal.setText("");
         txtPenerbit.setText("");
         jComboBoxKategori.setSelectedIndex(0);
+        txtUsia.setText("");
+        buttonGroup1.clearSelection();
     }
     
     private void exportAndOpenPDF(JTable table, String path) {
@@ -146,6 +158,10 @@ public class formbuku extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -169,6 +185,12 @@ public class formbuku extends javax.swing.JFrame {
         btnPreview = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         btnBaru = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jRadioKategoriUsia1 = new javax.swing.JRadioButton();
+        jRadioKategoriUsia2 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtUsia = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,6 +280,39 @@ public class formbuku extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
+
+        buttonGroup1.add(jRadioKategoriUsia1);
+        jRadioKategoriUsia1.setText("Buku Lama");
+
+        buttonGroup1.add(jRadioKategoriUsia2);
+        jRadioKategoriUsia2.setText("Buku Baru");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioKategoriUsia1)
+                    .addComponent(jRadioKategoriUsia2))
+                .addGap(21, 21, 21))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jRadioKategoriUsia1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioKategoriUsia2)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jLabel8.setText("Usia Buku");
+
+        jLabel9.setText("Kategori Usia");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -267,30 +322,34 @@ public class formbuku extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(358, 358, 358))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addComponent(btnPreview)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExport))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnPreview)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExport))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtIdBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPengarang, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtUsia)
+                                    .addComponent(txtIdBuku, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                                    .addComponent(txtJudul, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                                    .addComponent(txtPengarang, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                                    .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                                    .addComponent(txtPenerbit, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxKategori, 0, 252, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -299,11 +358,9 @@ public class formbuku extends javax.swing.JFrame {
                                         .addComponent(btnTambah))
                                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnKeluar, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                                    .addComponent(btnKeluar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,12 +396,21 @@ public class formbuku extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboBoxKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtUsia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPreview)
                     .addComponent(btnExport))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,7 +420,7 @@ public class formbuku extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,15 +441,33 @@ public class formbuku extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         try {
-            String sql = "INSERT INTO buku (id_buku, judul, pengarang, tanggal_terbit, penerbit, kategori) VALUES (?, ?, ?, ?, ?, ?)";
+            // Ambil tanggal terbit dari input
+            String tanggalTerbitStr = txtTanggal.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate tanggalTerbit = LocalDate.parse(tanggalTerbitStr, formatter);
+
+            // Hitung usia buku
+            int tahunSekarang = Year.now().getValue();
+            int usia = tahunSekarang - tanggalTerbit.getYear();
+
+            // Tentukan kategori usia
+            String kategoriUsia = (usia > 30) ? "Buku Lama" : "Buku Baru";
+
+            // Query SQL lengkap
+            String sql = "INSERT INTO buku (id_buku, judul, pengarang, tanggal_terbit, penerbit, kategori, usia_buku, kategori_usia) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             Connection conn = config.configDB();
             PreparedStatement pst = conn.prepareStatement(sql);
+
             pst.setString(1, txtIdBuku.getText());
             pst.setString(2, txtJudul.getText());
             pst.setString(3, txtPengarang.getText());
-            pst.setString(4, txtTanggal.getText());
+            pst.setString(4, tanggalTerbitStr);
             pst.setString(5, txtPenerbit.getText());
             pst.setString(6, jComboBoxKategori.getSelectedItem().toString());
+            pst.setInt(7, usia);
+            pst.setString(8, kategoriUsia);
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
             tampilkanData();
@@ -403,7 +487,7 @@ public class formbuku extends javax.swing.JFrame {
     private void jTableBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBukuMouseClicked
         int baris = jTableBuku.rowAtPoint(evt.getPoint());
 
-        String id = jTableBuku.getValueAt(baris, 1).toString(); // kolom ID (index 1)
+        String id = jTableBuku.getValueAt(baris, 1).toString(); // ID
         txtIdBuku.setText(id);
 
         String judul = jTableBuku.getValueAt(baris, 2).toString();
@@ -420,28 +504,58 @@ public class formbuku extends javax.swing.JFrame {
 
         String kategori = jTableBuku.getValueAt(baris, 6).toString();
         jComboBoxKategori.setSelectedItem(kategori);
+
+        // Hitung usia buku dari tanggal
+        try {
+            String tanggalTerbitStr = txtTanggal.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate tanggalTerbit = LocalDate.parse(tanggalTerbitStr, formatter);
+
+            int tahunSekarang = Year.now().getValue();
+            int usia = tahunSekarang - tanggalTerbit.getYear();
+            txtUsia.setText(usia + " tahun");
+
+            // Tentukan kategori usia dan aktifkan radio button
+            String kategoriUsia = (usia > 30) ? "Buku Tua" : "Buku Baru";
+            if (kategoriUsia.equalsIgnoreCase(jRadioKategoriUsia1.getText())) {
+                jRadioKategoriUsia1.setSelected(true);
+            } else if (kategoriUsia.equalsIgnoreCase(jRadioKategoriUsia2.getText())) {
+                jRadioKategoriUsia2.setSelected(true);
+            } else {
+                buttonGroup1.clearSelection();
+            }
+
+        } catch (Exception e) {
+            txtUsia.setText("");
+            buttonGroup1.clearSelection();
+            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid (harus yyyy-MM-dd).");
+        }
     }//GEN-LAST:event_jTableBukuMouseClicked
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         try {
-            String sql = "UPDATE buku SET judul=?, pengarang=?, tanggal_terbit=?, penerbit=?, kategori=? WHERE id_buku=?";
+            // Hitung ulang usia berdasarkan tanggal terbit
+            String tanggalTerbitStr = txtTanggal.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate tanggalTerbit = LocalDate.parse(tanggalTerbitStr, formatter);
+            int tahunSekarang = Year.now().getValue();
+            int usia = tahunSekarang - tanggalTerbit.getYear();
+
+            // Tentukan kategori usia
+            String kategoriUsia = (usia > 30) ? "Buku Lama" : "Buku Baru";
+
+            String sql = "UPDATE buku SET judul=?, pengarang=?, tanggal_terbit=?, penerbit=?, kategori=?, usia_buku=?, kategori_usia=? WHERE id_buku=?";
             Connection conn = config.configDB();
             PreparedStatement pst = conn.prepareStatement(sql);
 
             pst.setString(1, txtJudul.getText());
             pst.setString(2, txtPengarang.getText());
-
-            // Kalau pakai JTextField:
             pst.setString(3, txtTanggal.getText());
-
-            // Kalau pakai JDateChooser:
-            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            // String tanggal = sdf.format(dateTanggalTerbit.getDate());
-            // pst.setString(3, tanggal);
-
             pst.setString(4, txtPenerbit.getText());
             pst.setString(5, jComboBoxKategori.getSelectedItem().toString());
-            pst.setString(6, txtIdBuku.getText()); // ID untuk WHERE
+            pst.setInt(6, usia); // gunakan usia hasil hitung ulang (int, bukan String)
+            pst.setString(7, kategoriUsia);
+            pst.setString(8, txtIdBuku.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil diperbarui!");
@@ -537,6 +651,10 @@ public class formbuku extends javax.swing.JFrame {
     private javax.swing.JButton btnKeluar;
     private javax.swing.JButton btnPreview;
     private javax.swing.JButton btnTambah;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JComboBox<String> jComboBoxKategori;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -545,7 +663,12 @@ public class formbuku extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioKategoriUsia1;
+    private javax.swing.JRadioButton jRadioKategoriUsia2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableBuku;
     private javax.swing.JTextField txtIdBuku;
@@ -553,5 +676,6 @@ public class formbuku extends javax.swing.JFrame {
     private javax.swing.JTextField txtPenerbit;
     private javax.swing.JTextField txtPengarang;
     private javax.swing.JTextField txtTanggal;
+    private javax.swing.JTextField txtUsia;
     // End of variables declaration//GEN-END:variables
 }
